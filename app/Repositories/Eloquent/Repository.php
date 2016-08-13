@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Eloquent;
 
-use App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Container\Container as App;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Repositories\Exceptions\RepositoryException;
 
