@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+$router = app('router');
+
+$router->get('/', ['as' => 'rota.staff', 'uses' => 'RotaSlotStaffController@index']);

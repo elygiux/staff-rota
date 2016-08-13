@@ -18,7 +18,7 @@ elixir(function (mix) {
         .styles([
             'css/app.css',
             'vendor/bootstrap/dist/css/bootstrap.min.css'
-        ], 'public/css/landing.min.css', 'resources/assets')
+        ], 'public/css/app.min.css', 'resources/assets')
         .scripts([
             'jquery/dist/jquery.min.js',
             'bootstrap/dist/js/bootstrap.min.js'
