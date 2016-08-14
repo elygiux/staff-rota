@@ -15,8 +15,8 @@
  
  #### Some explanations
  
- 1. In Staff shift times table days are translated to human readable. Assumed day 0 is sunday.
- 2. If some case 'daynumber' is not representing a day of week, days are displayed as numbers in pie charts.
- 3. Highcharts is required in bower, but not used. Links from CDN's used for better performance. Could be done the same
+* In Staff shift times table days are translated to human readable. Assumed day 0 is sunday.
+* If some case 'daynumber' is not representing a day of week, days are displayed as numbers in pie charts.
+* Highcharts is required in bower, but not used. Links from CDN's used for better performance. Could be done the same
  with bootstrap and jquery.
- 4. The task is done how I understood it. It is quite confusing.
+* The task is done how I understood it. It is quite confusing.
