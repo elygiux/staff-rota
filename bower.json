@@ -1,0 +1,7 @@
+{
+  "name": "staff-rota",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "highcharts": "^4.2.6"
+  }
+}
