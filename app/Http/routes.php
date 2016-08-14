@@ -14,3 +14,7 @@
 $router = app('router');
 
 $router->get('/', ['as' => 'rota.staff', 'uses' => 'RotaSlotStaffController@index']);
+
+$router->group(['prefix' => 'api'], function ($router) {
+    $router->get('rota/staff/by-day', ['as' => 'api.rota.staff.by.day', 'uses' => 'RotaSlotStaffController@getStaffDataByDay']);
+});

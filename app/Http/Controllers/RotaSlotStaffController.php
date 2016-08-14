@@ -16,13 +16,31 @@ class RotaSlotStaffController extends Controller
     {
         $staff = $this->getStaffOfTypeShift($rotaSlotStaff);
 
-        $staffByDay = mapByValueToArrayItem($staff, 'daynumber');
-        $hoursByDay = $this->countTotalHoursByDay($staffByDay);
+        $dayByStaff = mapByValueToArrayItem($staff, 'daynumber');
+        $hoursByDay = $this->countTotalHoursByDay($dayByStaff);
 
-        return view('index', compact('staffByDay', 'hoursByDay'));
+        return view('index', compact('dayByStaff', 'hoursByDay'));
     }
 
     /**
+     * Get staff data by day
+     *
+     * @param RotaSlotStaffRepository $rotaSlotStaff
+     * @return array
+     */
+    public function getStaffDataByDay(RotaSlotStaffRepository $rotaSlotStaff)
+    {
+        $staff = $this->getStaffOfTypeShift($rotaSlotStaff);
+        $staffByDay = mapByValueToArrayItem($staff, 'staffid');
+
+        ksort($staffByDay);
+
+        return $staffByDay;
+    }
+
+    /**
+     * Get all staff that staff type is shift and staff id is not null
+     *
      * @param RotaSlotStaffRepository $rotaSlotStaff
      * @return mixed
      */
@@ -35,6 +53,7 @@ class RotaSlotStaffController extends Controller
 
     /**
      * Add total work hours by day to existing array
+     *
      * @param $staffByDay
      * @return array
      */

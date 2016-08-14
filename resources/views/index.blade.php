@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{trans('rota.rota_slot_staff')}}</title>
-    <link rel="stylesheet" href="{{asset('css/app.min.css')}}">
-</head>
-<body>
-<div class="container-fluid">
+@extends('layout.main')
+@section('content')
     <h1 class="text-center">{{trans('rota.rota_slot_staff')}}</h1>
     <br>
-    <table class="table table-bordered main-table table-responsive">
-        <thead>
-        <tr>
-            <th>{{trans('rota.day')}}</th>
-            <th>{{trans('rota.staff_and_times')}}</th>
-            <th>{{trans('rota.total_worked')}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($staffByDay as $day => $staff)
-            <tr>
-                <th>
-                    {{intToDayOfWeek($day)}}
-                </th>
-                <td class="wrapper">
-                    <table class="table inner-table">
-                        <tr>
-                            @foreach($staff as $member)
-                                <td>{{$member['staffid']}}
-                                    <small class="visible-lg-inline">({{$member['starttime']}}
-                                        - {{$member['endtime']}})
-                                    </small>
-                                </td>
-                            @endforeach
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    {{$hoursByDay[$day]['totalHoursWorked']}}
-                </td>
-            </tr>
+    @include('rota.tables.shift-times')
 
-        @endforeach
-        </tbody>
-    </table>
-</div>
-</body>
-<script src="{{asset('js/app.min.js')}}"></script>
-</html>
+    <div class="row">
+        <h1 class="text-center">Staff work by day in minutes</h1>
+        <br>
+        @include('rota.charts.staff-charts')
+    </div>
+@stop
+@section('javascript')
+    <script>
+        $(document).ready(function () {
+            $.get('{{route('api.rota.staff.by.day')}}', function (rotaStaff) {
+                $.each(rotaStaff, function (staffId, staff) {
+                    var data = [];
+
+                    appendStaffDivToWrapperDiv('#rota-staff-by-day', staffId);
+
+                    $.each(staff, function (key, value) {
+                        var workMinutes = floatHoursToMinutes(value.workhours);
+
+                        data.push({
+                            name: 'Day ' + value.daynumber,
+                            y: workMinutes
+                        });
+                    });
+
+                    createStaffPieChart(staffId, data);
+                });
+            });
+        });
+    </script>
+@stop

@@ -20,7 +20,9 @@ elixir(function (mix) {
             'vendor/bootstrap/dist/css/bootstrap.min.css'
         ], 'public/css/app.min.css', 'resources/assets')
         .scripts([
-            'jquery/dist/jquery.min.js',
-            'bootstrap/dist/js/bootstrap.min.js'
-        ], 'public/js/app.min.js', 'resources/assets/vendor');
+            'vendor/jquery/dist/jquery.min.js',
+            'vendor/bootstrap/dist/js/bootstrap.min.js',
+            'js/helpers.js',
+            'js/highcharts.js'
+        ], 'public/js/app.min.js', 'resources/assets');
 });

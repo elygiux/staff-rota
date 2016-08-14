@@ -59,3 +59,14 @@ function intToDayOfWeek($number)
 
     return trans('rota.day_of_week.' . $dayOfWeek);
 }
+
+/**
+ * Count how many minutes in a float number representing hours
+ *
+ * @param $time
+ * @return int
+ */
+function floatHoursToMinutes($time)
+{
+    return (int) $time * 60 + (int) (fmod($time, 1) * 60);
+}
